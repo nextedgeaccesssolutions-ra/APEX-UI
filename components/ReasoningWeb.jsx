@@ -22,28 +22,28 @@ import { useEffect, useRef } from 'react'
 const NS = 'http://www.w3.org/2000/svg'
 const AX_DEFAULT = 340, AY_DEFAULT = 240   // exact viewBox centre = the orb's world-origin anchor (where the 3D particle
                            // ball is centred), so the spoke hub originates from the particle cluster's centre
-const COL = { consultant: '#00e5ff', doer: '#f5a623', tool: '#7f9bb3' }
+const COL = { consultant: '#f0cd89', doer: '#d4a64f', tool: '#8a8172' }
 
 // Right side re-spaced into a clean vertical ladder (drive→finance→editor→memory→email→design)
 // so no label collides with a neighbouring circle. Left/bottom unchanged.
 const ROSTER = [
-  ['chief_of_staff', 'Chief of staff', 'consultant', 250, 212, true, 18, 9],
-  ['memory', 'Memory', 'consultant', 452, 250, true, -18, 8],
-  ['strategist', 'Strategist', 'consultant', 296, 118, true, -22, 6.5],
-  ['researcher', 'Researcher', 'consultant', 182, 150, true, 24, 6.5],
+  ['ceo', 'CEO', 'consultant', 250, 212, true, 18, 9],
+  ['caio', 'CAIO', 'consultant', 452, 250, true, -18, 8],
+  ['hseq', 'HSEQ', 'consultant', 296, 118, true, -22, 6.5],
+  ['engineering', 'Engineering', 'consultant', 182, 150, true, 24, 6.5],
   ['finance', 'Finance', 'consultant', 436, 148, true, -20, 6.5],
-  ['editor', 'Editor', 'consultant', 584, 208, true, -26, 6.5],
-  ['sales', 'Sales', 'doer', 158, 266, true, 22, 6.5],
-  ['marketing', 'Marketing', 'doer', 195, 298, true, 22, 6.5],
-  ['ops', 'Ops', 'doer', 232, 330, true, 20, 6.5],
-  ['social_media', 'Social', 'doer', 330, 374, true, -16, 6.5],
-  ['engineering', 'Engineering', 'doer', 426, 350, true, -18, 6.5],
-  ['design', 'Design', 'doer', 502, 312, true, -22, 6.5],
-  ['developer', 'Developer', 'doer', 118, 356, false, 26, 6],
-  ['analytics', 'Analytics', 'tool', 256, 388, false, 20, 5.5],
+  ['compliance', 'Compliance', 'consultant', 584, 208, true, -26, 6.5],
+  ['rope_access', 'Rope Access', 'doer', 158, 266, true, 22, 6.5],
+  ['renewables', 'Renewables', 'doer', 195, 298, true, 22, 6.5],
+  ['offshore', 'Offshore', 'doer', 232, 330, true, 20, 6.5],
+  ['projects', 'Projects', 'doer', 330, 374, true, -16, 6.5],
+  ['sales', 'Sales', 'doer', 426, 350, true, -18, 6.5],
+  ['marketing', 'Marketing', 'doer', 502, 312, true, -22, 6.5],
+  ['training', 'Training', 'doer', 118, 356, false, 26, 6],
+  ['supabase', 'Supabase', 'tool', 256, 388, false, 20, 5.5],
   ['crm', 'CRM', 'tool', 414, 392, true, -18, 5.5],
   ['calendar', 'Calendar', 'tool', 560, 356, true, -24, 5.5],
-  ['email', 'Email', 'tool', 608, 286, false, -26, 5.5],
+  ['gmail', 'Gmail', 'tool', 608, 286, false, -26, 5.5],
   ['drive', 'Drive', 'tool', 582, 132, false, 24, 5.5],
 ]
 const META = {}; ROSTER.forEach((r) => { META[r[0]] = { label: r[1], col: COL[r[2]] } })
@@ -71,15 +71,15 @@ export default function ReasoningWeb({ state = 'standby', trace = null, mode = '
     // Day-mode palette (P5) — every structural color routes through P so the web is legible on the
     // light paper bg (labels were white-on-light = invisible). Remounted via key={theme} upstream.
     const P = light ? {
-      ring: '#93a9bb', pcb: '#5d7f97', pcbDot: '#0e7490', fieldMesh: '#9db1c0', fieldDot: '#0e7490',
-      mesh: '#8ba2b4', spoke: '#46708e', spokeHot: '#0891b2', link: '#0d9488',
-      label: '#1f2d3a', labelMinor: '#55677a', labelDorm: '#8a99a8', mote: '#0aa9c8', moteHot: '#067a96',
-      col: { consultant: '#067a96', doer: '#b26d05', tool: '#64748b' },
+      ring: '#bcaa86', pcb: '#8a7447', pcbDot: '#8a6a32', fieldMesh: '#c3b492', fieldDot: '#8a6a32',
+      mesh: '#b3a37f', spoke: '#7d6534', spokeHot: '#a9802f', link: '#8a6a32',
+      label: '#2d2718', labelMinor: '#6b6048', labelDorm: '#9a8f78', mote: '#a9802f', moteHot: '#8a6a32',
+      col: { consultant: '#8a6a32', doer: '#a9802f', tool: '#6b6355' },
     } : {
-      ring: '#1b5f78', pcb: '#1c5f7a', pcbDot: '#37d6ef', fieldMesh: '#143f4f', fieldDot: '#2bd0e6',
-      mesh: '#1a5468', spoke: '#22566b', spokeHot: '#33eaff', link: '#5eead4',
-      label: '#dfeaf3', labelMinor: '#93a8ba', labelDorm: '#546a7d', mote: '#5fe0f2', moteHot: '#bff6ff',
-      col: { consultant: '#00e5ff', doer: '#f5a623', tool: '#7f9bb3' },
+      ring: '#6b5327', pcb: '#6d5529', pcbDot: '#e8c77e', fieldMesh: '#43351a', fieldDot: '#d4a64f',
+      mesh: '#574420', spoke: '#5e4a24', spokeHot: '#f7e3b5', link: '#f0cd89',
+      label: '#f3ead8', labelMinor: '#b9a888', labelDorm: '#7a6d57', mote: '#e5c078', moteHot: '#fff6e0',
+      col: { consultant: '#f0cd89', doer: '#d4a64f', tool: '#8a8172' },
     }
     const mk = (t, a = {}) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); return e }
     const defs = mk('defs')
@@ -108,8 +108,8 @@ export default function ReasoningWeb({ state = 'standby', trace = null, mode = '
     // ── Apex core (unless layered over the 3D orb) ──
     let halo, ring, gold, hot
     if (!coreless) {
-      halo = mk('circle', { cx: AX, cy: AY, r: 30, fill: '#0bd0ff', opacity: 0.14, filter: 'url(#rw-soft)' })
-      ring = mk('circle', { cx: AX, cy: AY, r: 18, fill: 'none', stroke: '#7df1ff', 'stroke-width': 1.2, opacity: 0.6 })
+      halo = mk('circle', { cx: AX, cy: AY, r: 30, fill: '#e8c77e', opacity: 0.14, filter: 'url(#rw-soft)' })
+      ring = mk('circle', { cx: AX, cy: AY, r: 18, fill: 'none', stroke: '#fff6e0', 'stroke-width': 1.2, opacity: 0.6 })
       gold = mk('circle', { cx: AX, cy: AY, r: 11, fill: '#ffcf6b', filter: 'url(#rw-glow)' })
       hot = mk('circle', { cx: AX, cy: AY, r: 4, fill: '#ffffff', filter: 'url(#rw-glow)' })
       const lab = mk('text', { x: AX, y: AY + 34, 'text-anchor': 'middle', 'font-size': 12, 'font-family': 'inherit', fill: '#ffcf6b' })
