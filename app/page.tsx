@@ -1,5 +1,6 @@
 import ApexWorld from "@/components/ApexWorld";
 import ApexOverviewPanel from "@/components/ApexOverviewPanel";
+import ElevenLabsVoiceWidget from "@/components/ElevenLabsVoiceWidget";
 
 export default function Home() {
   return (
@@ -7,16 +8,11 @@ export default function Home() {
       id="main"
       style={{ background: "#090807", color: "#f0ede8", position: "relative", overflow: "hidden" }}
     >
-      {/* Top-left overview HUD: clock + weather + social links */}
       <ApexOverviewPanel />
-
-      {/* The world: orb core + orbiting agent graph. Tap the orb to cycle its
-          state; click any agent node to open its overview card. */}
       <section style={{ position: "relative", height: "100vh", minHeight: 620 }}>
         <ApexWorld />
       </section>
-
-      {/* Repo link — remove or replace for your own use */}
+      <ElevenLabsVoiceWidget />
       <a
         href="https://github.com/nextedgeaccesssolutions-ra/APEX-UI"
         target="_blank"
