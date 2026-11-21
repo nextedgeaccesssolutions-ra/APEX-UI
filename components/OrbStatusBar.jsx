@@ -5,7 +5,7 @@
  * ring + STANDBY + 3 dots), relocated to the lower part of the page so the
  * particles can own the centre of the ring.
  */
-const GOLD = '#f5a623'
+const GOLD = '#d4a64f'
 const GOLD_BRIGHT = '#ffd080'
 
 function Waveform({ active, cx, cy, width = 200 }) {

@@ -36,11 +36,11 @@ class OrbBoundary extends React.Component {
   render() { return this.state.dead ? null : this.props.children }
 }
 
-const GOLD = '#f5a623'
+const GOLD = '#d4a64f'
 const GOLDLINE = '#ffb733'   // warmer, brighter amber for the lines/rings (matches original glow)
 const GOLDNODE = '#ffe6ad'   // light gold for the glowing nodes
-const CYAN = '#00e5ff'
-const BALL = '#c8f7ff'
+const CYAN = '#f0cd89'
+const BALL = '#fff6e0'
 const N = 1200
 const ARM_N = 340   // particles forming the stream/arm to the cursor (rest = the ball)
 const GREEN = 1.5
@@ -48,26 +48,26 @@ const RED = 2.05
 
 const BG_VARIANTS = [
   { name: 'Subtle', css: [
-    'radial-gradient(circle 22% at 50% 45%, rgba(0,229,255,0.08), transparent 70%)',
-    'radial-gradient(ellipse 60% 62% at 50% 44%, rgba(245,166,35,0.10), transparent 62%)',
-    'radial-gradient(ellipse 120% 120% at 50% 50%, #0a0c12 30%, #050608 60%, #010102 100%)',
+    'radial-gradient(circle 22% at 50% 45%, rgba(240,205,137,0.08), transparent 70%)',
+    'radial-gradient(ellipse 60% 62% at 50% 44%, rgba(212,166,79,0.10), transparent 62%)',
+    'radial-gradient(ellipse 120% 120% at 50% 50%, #0c0a07 30%, #070605 60%, #020201 100%)',
   ].join(',') },
   { name: 'Strong', css: [
-    'radial-gradient(circle 28% at 50% 45%, rgba(0,229,255,0.18), transparent 72%)',
-    'radial-gradient(ellipse 72% 72% at 50% 44%, rgba(245,166,35,0.20), transparent 66%)',
-    'radial-gradient(ellipse 130% 130% at 50% 50%, #0d1018 25%, #06080c 60%, #010103 100%)',
+    'radial-gradient(circle 28% at 50% 45%, rgba(240,205,137,0.18), transparent 72%)',
+    'radial-gradient(ellipse 72% 72% at 50% 44%, rgba(212,166,79,0.20), transparent 66%)',
+    'radial-gradient(ellipse 130% 130% at 50% 50%, #100d09 25%, #080706 60%, #020202 100%)',
   ].join(',') },
   { name: 'Grid', css: [
-    'radial-gradient(ellipse 55% 55% at 50% 44%, rgba(245,166,35,0.10), transparent 60%)',
-    'repeating-linear-gradient(0deg, rgba(0,229,255,0.045) 0 1px, transparent 1px 46px)',
-    'repeating-linear-gradient(90deg, rgba(0,229,255,0.045) 0 1px, transparent 1px 46px)',
-    'radial-gradient(ellipse 120% 120% at 50% 50%, #080a10 30%, #04050a 60%, #010102 100%)',
+    'radial-gradient(ellipse 55% 55% at 50% 44%, rgba(212,166,79,0.10), transparent 60%)',
+    'repeating-linear-gradient(0deg, rgba(240,205,137,0.045) 0 1px, transparent 1px 46px)',
+    'repeating-linear-gradient(90deg, rgba(240,205,137,0.045) 0 1px, transparent 1px 46px)',
+    'radial-gradient(ellipse 120% 120% at 50% 50%, #0a0906 30%, #060504 60%, #020201 100%)',
   ].join(',') },
   { name: 'Nebula', css: [
-    'radial-gradient(ellipse 42% 36% at 34% 38%, rgba(0,229,255,0.12), transparent 60%)',
-    'radial-gradient(ellipse 46% 40% at 67% 62%, rgba(245,166,35,0.12), transparent 62%)',
+    'radial-gradient(ellipse 42% 36% at 34% 38%, rgba(240,205,137,0.12), transparent 60%)',
+    'radial-gradient(ellipse 46% 40% at 67% 62%, rgba(212,166,79,0.12), transparent 62%)',
     'radial-gradient(ellipse 34% 30% at 60% 28%, rgba(130,90,230,0.10), transparent 60%)',
-    'radial-gradient(ellipse 130% 130% at 50% 50%, #090a12 26%, #05060b 62%, #010102 100%)',
+    'radial-gradient(ellipse 130% 130% at 50% 50%, #090a12 26%, #05060b 62%, #020201 100%)',
   ].join(',') },
 ]
 
@@ -105,8 +105,8 @@ function Equalizer() {
         return (
           <span key={i} style={{
             width: 3, height: h, borderRadius: 2,
-            background: 'linear-gradient(#ffe6ad, #f5a623)',
-            boxShadow: '0 0 6px rgba(245,166,35,0.55)',
+            background: 'linear-gradient(#fbeecb, #d4a64f)',
+            boxShadow: '0 0 6px rgba(212,166,79,0.55)',
             transformOrigin: 'center',
             animation: `apexEq ${dur}s ease-in-out ${delay}s infinite`,
           }} />
@@ -439,8 +439,8 @@ export default function ApexCore3D({ state = 'idle', variant = 'geodesic', onCli
           onClick={(e) => { e.stopPropagation(); setBgIdx(i => (i + 1) % BG_VARIANTS.length) }}
           style={{
             position: 'absolute', top: 44, left: 16, zIndex: 5, pointerEvents: 'auto',
-            background: 'rgba(245,166,35,0.12)', border: '1px solid rgba(245,166,35,0.4)',
-            color: '#f5a623', fontFamily: "'Share Tech Mono', monospace", fontSize: 10,
+            background: 'rgba(212,166,79,0.12)', border: '1px solid rgba(212,166,79,0.4)',
+            color: '#d4a64f', fontFamily: "'Share Tech Mono', monospace", fontSize: 10,
             letterSpacing: '0.12em', padding: '4px 10px', borderRadius: 5, cursor: 'pointer',
           }}
         >BG Â· {BG_VARIANTS[bgIdx].name.toUpperCase()}</button>
@@ -490,7 +490,7 @@ export default function ApexCore3D({ state = 'idle', variant = 'geodesic', onCli
           <Equalizer />
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: GOLD, boxShadow: `0 0 10px ${GOLD}`, animation: 'apexPulse 1.8s ease-in-out infinite' }} />
-            <span style={{ color: '#ffd98a', fontFamily: "'Share Tech Mono', monospace", letterSpacing: '0.5em', fontSize: 16, textTransform: 'uppercase', textShadow: '0 0 18px rgba(245,166,35,0.7), 0 0 4px rgba(245,166,35,0.9)' }}>{label}</span>
+            <span style={{ color: '#ffd98a', fontFamily: "'Share Tech Mono', monospace", letterSpacing: '0.5em', fontSize: 16, textTransform: 'uppercase', textShadow: '0 0 18px rgba(212,166,79,0.7), 0 0 4px rgba(212,166,79,0.9)' }}>{label}</span>
           </div>
         </div>
       )}

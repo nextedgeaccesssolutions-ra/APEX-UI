@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "APEX-UI — Autonomous-agent orb interface",
+  title: "NEAS AI — Workforce orb interface",
   description:
-    "An open-source (MIT) animated orb + reasoning-graph UI. Hand-written SVG/CSS, no 3D libraries.",
+    "NextEdge Access Solutions (NEAS) AI workforce — an animated orb and reasoning-graph view of the rope access, renewables, offshore and power specialist roles.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

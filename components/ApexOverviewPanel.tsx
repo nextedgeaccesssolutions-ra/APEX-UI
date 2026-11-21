@@ -3,7 +3,7 @@
 /**
  * OVERVIEW lamp panel - same design as the Apex app's top-left HUD
  * (OverviewMode.jsx): glowing filament line + sliding node + "OVERVIEW"
- * label, live clock/date and Tel-Aviv weather (open-meteo, same endpoint
+ * label, live clock/date and visitor-local weather (open-meteo, same endpoint
  * as the app).
  *
  * Clicking the lamp opens the tiles. They are deliberately three different
@@ -14,18 +14,19 @@
  */
 
 import { useEffect, useState } from "react";
-import { Sparkles, Instagram, Facebook, Linkedin, ArrowUpRight } from "lucide-react";
+import { Sparkles, Instagram, Facebook, Linkedin, Youtube, ArrowUpRight } from "lucide-react";
 
-const ACCENT = "#00e5ff";
+const ACCENT = "#d4a64f";
 const WCODE: Record<number, string> = { 0: "Clear", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast", 45: "Fog", 48: "Fog", 51: "Drizzle", 53: "Drizzle", 55: "Drizzle", 61: "Rain", 63: "Rain", 65: "Heavy rain", 71: "Snow", 73: "Snow", 75: "Snow", 80: "Showers", 81: "Showers", 82: "Showers", 95: "Storm", 96: "Storm", 99: "Storm" };
 
 type Tile = { key: string; icon: typeof Sparkles; label: string; href: string };
 
-// Social links stay live — they point to public profiles. Swap them for your own.
+// NextEdge Access Solutions (NEAS) public profiles.
 const TILES: Tile[] = [
-  { key: "instagram", icon: Instagram, label: "Follow us on Instagram", href: "https://www.instagram.com/reznikov_engineering/" },
-  { key: "facebook",  icon: Facebook,  label: "Follow us on Facebook",  href: "https://www.facebook.com/profile.php?id=61590746065386" },
-  { key: "linkedin",  icon: Linkedin,  label: "Follow us on LinkedIn",  href: "https://www.linkedin.com/in/ruben-mouradian-150698173" },
+  { key: "linkedin",  icon: Linkedin,  label: "NEAS on LinkedIn",  href: "https://www.linkedin.com/company/nextedge-access-solutions-neas" },
+  { key: "facebook",  icon: Facebook,  label: "NEAS on Facebook",  href: "https://www.facebook.com/NextEdgeAccessSolutionss" },
+  { key: "instagram", icon: Instagram, label: "NEAS on Instagram", href: "https://www.instagram.com/nextedgeaccesssolutions" },
+  { key: "youtube",   icon: Youtube,   label: "NEAS on YouTube",   href: "https://www.youtube.com/@NextEdgeAccessSolutions" },
 ];
 
 function Clock() {
@@ -126,7 +127,7 @@ export default function ApexOverviewPanel() {
       >
         <div style={{
           position: "absolute", top: 14, left: 8, width: `min(${FIL}px, ${FIL_CAP})`, height: 2, borderRadius: 2,
-          background: "#a5f3fc",
+          background: "#f7e3b5",
           boxShadow: `0 0 10px ${ACCENT}, 0 0 26px ${ACCENT}${open ? ", 0 0 54px " + ACCENT : ""}`,
           transition: "all .5s ease",
         }} />
@@ -135,7 +136,7 @@ export default function ApexOverviewPanel() {
           // Rides the end of the filament, so it has to obey the same cap or it
           // parks itself on top of the Site home button.
           position: "absolute", top: 11, left: open ? `min(${FIL}px, ${FIL_CAP})` : 6, width: 8, height: 8, borderRadius: "50%",
-          background: "#e0fbff", boxShadow: `0 0 10px ${ACCENT}, 0 0 18px ${ACCENT}`,
+          background: "#fff6e0", boxShadow: `0 0 10px ${ACCENT}, 0 0 18px ${ACCENT}`,
           transition: "left .5s ease", pointerEvents: "none",
         }} />
         <span style={{

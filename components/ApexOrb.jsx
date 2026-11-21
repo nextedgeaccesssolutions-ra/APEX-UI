@@ -1,6 +1,6 @@
 "use client";
 
-const GOLD = '#f5a623'
+const GOLD = '#d4a64f'
 const GOLD_BRIGHT = '#ffd080'
 
 function Waveform({ active, cx, cy, width = 220 }) {
