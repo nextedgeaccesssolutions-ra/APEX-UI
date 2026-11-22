@@ -55,3 +55,37 @@ body {
 @media (max-width: 700px) {
   .sb-hint { display: none; }
 }
+
+
+/* NEAS AI holographic avatar and voice controls inside the original gold core. */
+.neas-avatar-console{position:absolute;inset:0;z-index:8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;pointer-events:none;color:#d9faff;font-family:var(--font-mono)}
+.neas-avatar-portrait{position:relative;width:clamp(118px,15vw,178px);height:clamp(132px,17vw,196px);display:grid;place-items:center;filter:drop-shadow(0 0 16px rgba(35,190,240,.28));animation:neasAvatarBreathe 4.8s ease-in-out infinite}
+.neas-avatar-portrait svg{width:100%;height:100%;overflow:visible}
+.neas-avatar-halo{position:absolute;inset:10%;border-radius:50%;background:radial-gradient(ellipse,rgba(22,170,220,.25),rgba(8,40,65,.06) 60%,transparent 72%);filter:blur(14px);animation:neasAvatarHalo 3.5s ease-in-out infinite}
+.neas-avatar-eye{animation:neasEyeGlow 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.neas-avatar-mouth{transform-box:fill-box;transform-origin:center}
+.neas-avatar-scanline{position:absolute;left:18%;right:18%;height:1px;top:20%;background:rgba(119,239,255,.7);box-shadow:0 0 9px #36d9ff;opacity:.25;animation:neasScan 4.8s linear infinite}
+.neas-avatar-caption{display:flex;align-items:center;gap:7px;margin-top:-3px;font-size:8px;letter-spacing:.2em;color:rgba(221,248,255,.8)}
+.neas-avatar-live-dot{width:5px;height:5px;border-radius:50%;background:#62eaff;box-shadow:0 0 8px #39d8ff}
+.neas-avatar-state{color:#e8bd70;margin-left:3px}
+.neas-avatar-controls{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;pointer-events:auto}
+.neas-avatar-action{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(230,190,113,.72);color:#f4d69b;background:rgba(5,24,39,.88);border-radius:999px;padding:8px 12px;font:700 8px var(--font-mono);letter-spacing:.13em;cursor:pointer;box-shadow:0 0 12px rgba(212,166,79,.16);transition:transform .2s,background .2s,box-shadow .2s}
+.neas-avatar-action:hover{transform:translateY(-2px);background:rgba(12,59,78,.95);box-shadow:0 0 18px rgba(48,204,244,.3)}
+.neas-avatar-photo{border-color:rgba(79,204,231,.65);color:#a7efff}
+.neas-avatar-photo.is-active{background:rgba(14,76,99,.92)}
+.neas-avatar-photo-hint{margin-top:5px;max-width:230px;text-align:center;color:#a7efff;font:8px/1.4 var(--font-mono);letter-spacing:.04em}
+.neas-avatar-photo-hint svg{vertical-align:-2px;margin-right:4px}
+.neas-avatar-console[data-state="listening"] .neas-avatar-live-dot{background:#49eaff;animation:neasDotPulse .8s ease-in-out infinite}
+.neas-avatar-console[data-state="thinking"] .neas-avatar-live-dot{background:#e9bd6f;animation:neasDotPulse .55s ease-in-out infinite}
+.neas-avatar-console[data-state="speaking"] .neas-avatar-mouth{animation:neasMouthTalk .17s ease-in-out infinite alternate}
+.neas-avatar-console[data-state="speaking"] .neas-avatar-eye{animation-duration:.7s}
+.neas-avatar-console[data-state="speaking"] .neas-avatar-portrait{animation-duration:1.2s}
+.neas-avatar-console[data-state="error"] .neas-avatar-live-dot{background:#fb6262;box-shadow:0 0 10px #fb6262}
+@keyframes neasAvatarBreathe{0%,100%{transform:translateY(1px) scale(1)}50%{transform:translateY(-3px) scale(1.025)}}
+@keyframes neasAvatarHalo{0%,100%{opacity:.55;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes neasEyeGlow{0%,100%{opacity:.72;filter:drop-shadow(0 0 3px #58eaff)}50%{opacity:1;filter:drop-shadow(0 0 9px #58eaff)}}
+@keyframes neasScan{0%{transform:translateY(0);opacity:0}15%,85%{opacity:.35}100%{transform:translateY(145px);opacity:0}}
+@keyframes neasDotPulse{0%,100%{opacity:.55;transform:scale(.8)}50%{opacity:1;transform:scale(1.35)}}
+@keyframes neasMouthTalk{from{transform:scaleY(.7) scaleX(.96)}to{transform:scaleY(1.8) scaleX(1.05)}}
+@media(max-width:700px){.neas-avatar-portrait{width:116px;height:128px}.neas-avatar-controls{gap:5px;margin-top:5px}.neas-avatar-action{padding:7px 9px;font-size:7px}}
+@media(prefers-reduced-motion:reduce){.neas-avatar-portrait,.neas-avatar-halo,.neas-avatar-eye,.neas-avatar-scanline,.neas-avatar-console[data-state="speaking"] .neas-avatar-mouth,.neas-avatar-console[data-state="listening"] .neas-avatar-live-dot,.neas-avatar-console[data-state="thinking"] .neas-avatar-live-dot{animation:none!important}}
