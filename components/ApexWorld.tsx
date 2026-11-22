@@ -248,6 +248,20 @@ export default function ApexWorld() {
   };
   useEffect(() => () => { if (showTimer.current) clearTimeout(showTimer.current); }, []);
 
+  // Real ElevenLabs conversation events, not the demo tap-cycle, drive the orb
+  // and the specialist network while the voice session is active.
+  useEffect(() => {
+    const onVoiceState = (event: Event) => {
+      const value = (event as CustomEvent<string>).detail;
+      const next: OrbState = value === "speaking" ? "speaking"
+        : value === "thinking" ? "thinking"
+        : value === "listening" ? "listening" : "idle";
+      setShowState(next);
+    };
+    window.addEventListener("neas:voice-state", onVoiceState);
+    return () => window.removeEventListener("neas:voice-state", onVoiceState);
+  }, []);
+
   // Single entry point for opening an agent, shared by the SVG graph and the
   // hidden accessible list, so both routes behave identically.
   const openAgent = (n: NodeSel) => {
@@ -336,13 +350,13 @@ export default function ApexWorld() {
         role="button"
         tabIndex={0}
         aria-label="Apex core - tap to energize"
-        onClick={boost}
-        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); boost(); } }}
+        onClick={undefined}
+        onKeyDown={undefined}
         onMouseDown={(e) => e.preventDefault()}
         style={{
           position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)",
           width: "min(340px, 36vw)", height: "min(340px, 36vw)", borderRadius: "50%",
-          zIndex: 4, cursor: "pointer", background: "transparent", border: "none", userSelect: "none",
+          zIndex: 4, cursor: "default", background: "transparent", border: "none", userSelect: "none", pointerEvents: "none",
         }}
       />
 
