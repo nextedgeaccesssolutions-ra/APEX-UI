@@ -15,6 +15,7 @@ import ApexHeroOrb, { type OrbState } from "./ApexHeroOrb";
 import ReasoningWebJs from "./ReasoningWeb";
 import ShaderBackgroundJs from "./ShaderBackground";
 import OrbStatusBar from "./OrbStatusBar";
+import ApexVoiceAvatar from "./ApexVoiceAvatar";
 
 export type NodeSel = { name: string; key: string; color: string };
 
@@ -262,7 +263,7 @@ export default function ApexWorld() {
   }, []);
 
   // orb tap cycle → the web's activity level (same states the app streams)
-  const webState = orbState === "thinking" ? "processing" : orbState === "speaking" ? "speaking" : "standby";
+  const webState = orbState === "thinking" ? "processing" : orbState === "speaking" ? "speaking" : orbState === "listening" ? "listening" : "standby";
 
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", userSelect: "none" }}>
@@ -323,6 +324,11 @@ export default function ApexWorld() {
           is the circular disc below so agent nodes near the ring stay clickable */}
       <div style={{ position: "absolute", left: "50%", top: "50%", width: "min(560px, 58vw)", height: "min(500px, 56vw, 70vh)", transform: "translate(-50%, -50%)", zIndex: 3, pointerEvents: "none" }}>
         <ApexHeroOrb state={orbState} interactive={false} />
+      </div>
+
+      {/* NEAS holographic avatar and custom voice/photo controls inside the gold core. */}
+      <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", width: "min(340px, 36vw)", height: "min(340px, 36vw)", zIndex: 5, pointerEvents: "none" }}>
+        <ApexVoiceAvatar />
       </div>
 
       {/* central tap disc - covers the ring only (nodes orbit outside it) */}
